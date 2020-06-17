@@ -16,7 +16,7 @@ class OutputCurrentBuildInfoPlugin {
     }
 
     apply(compiler) {
-        compiler.plugin('emit', async (compilation, callback) => {
+        compiler.hooks.emit.tap('OutputCurrentBuildInfoPlugin', async (compilation, callback) => {
             let isGitRepository = true;
             let output = {
                 build_time: (new Date()).Format(this.dateFormatType),
@@ -36,17 +36,17 @@ class OutputCurrentBuildInfoPlugin {
                 }
 
                 compilation.assets[this.outputName] = {
-                    source(){
+                    source() {
                         return JSON.stringify(output);
                     },
-                    size(){
+                    size() {
                         return output.length;
                     }
                 };
             }
 
             callback();
-        });
+        })
     }
 }
 
