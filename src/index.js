@@ -13,6 +13,7 @@ class OutputCurrentBuildInfoPlugin {
         this.outputName = options.outputName || 'build-log.json';
         this.dateFormatType = options.dateFormatType || 'yyyy-MM-dd hh:mm:ss';
         this.buildType = options.buildType || 'local';
+        this.otherInfo = options.otherInfo || {};
     }
 
     apply(compiler) {
@@ -20,7 +21,8 @@ class OutputCurrentBuildInfoPlugin {
             let isGitRepository = true;
             let output = {
                 build_time: (new Date()).Format(this.dateFormatType),
-                build_type: 'local'
+                build_type: 'local',
+                otherInfo: this.otherInfo
             };
             try {
                 await checkIsGitRepository();

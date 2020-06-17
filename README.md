@@ -25,7 +25,10 @@ module.exports = {
         new OutputBuildInfoWebpackPlugin({
             outputName: 'build-log.json',
             dateFormatType: 'yyyy-MM-dd hh:mm:ss',
-            buildType: 'local'
+            buildType: 'local',
+            otherInfo: {
+                hello: 'world'
+            }               
         })
     ]
 };
@@ -39,7 +42,7 @@ module.exports = {
 outputName | 输出文件名称 | string | build-log.json
 dateFormatType | 时间格式 | string | yyyy-MM-dd hh:mm:ss
 buildType | 编译平台（自定义）| string | local
-
+otherInfo | 自定义参数 | Object | {}
 
 ### 输出文件格式
 
@@ -63,7 +66,8 @@ buildType | 编译平台（自定义）| string | local
       "name": "janlay",
       "email": "janlay884181317@gmail.com"
     }
-  }
+  },
+  "otherInfo": {}
 }
 ```
 
@@ -72,6 +76,7 @@ buildType | 编译平台（自定义）| string | local
 ```json5
 {
   "build_time": "2020-06-12 11:07:12",
-  "build_type": "local"
+  "build_type": "local",
+  "otherInfo": {}
 }
 ```
